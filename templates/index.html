@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Welcome, {{ session['username'] }}</h2>
+<a href="{{ url_for('add_expense') }}">Add New Expense</a>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for expense in expenses %}
+        <tr>
+            <td>{{ expense.name }}</td>
+            <td>{{ expense.amount }}</td>
+            <td>
+                <a href="{{ url_for('update_expense', id=expense.id) }}">Edit</a>
+                <a href="{{ url_for('delete_expense', id=expense.id) }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
